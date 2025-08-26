@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: 'Enterprise Homelab',
   description: '28-Container GitOps Infrastructure - Complete Documentation',
   
@@ -9,9 +10,6 @@ export default defineConfig({
   
   // GitHub Pages base (update with your username/repo)
   base: '/homelab-docs/',
-  
-  // Mermaid support
-  mermaid: true,
   
   // Theme configuration
   themeConfig: {
@@ -154,5 +152,11 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: '28-Container GitOps Infrastructure with Enterprise-Grade Monitoring & Observability' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: 'https://piyush97.github.io/homelab-docs/og-image.png' }]
-  ]
-})
+  ],
+
+  // Mermaid configuration
+  mermaid: {
+    // Mermaid theme and styling
+    theme: 'default'
+  }
+}))
