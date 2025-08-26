@@ -10,6 +10,9 @@ export default defineConfig({
   // GitHub Pages base (update with your username/repo)
   base: '/homelab-docs/',
   
+  // Mermaid support
+  mermaid: true,
+  
   // Theme configuration
   themeConfig: {
     // Site logo
@@ -44,7 +47,7 @@ export default defineConfig({
           text: 'Infrastructure',
           items: [
             { text: 'Architecture Overview', link: '/infrastructure/' },
-            { text: 'Container Map', link: '/infrastructure/containers' },
+            { text: 'Container Mapping', link: '/infrastructure/containers' },
             { text: 'Networking', link: '/infrastructure/networking' },
             { text: 'Storage', link: '/infrastructure/storage' },
             { text: 'Security', link: '/infrastructure/security' }
