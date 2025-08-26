@@ -1,0 +1,31 @@
+{
+  "name": "homelab-docs",
+  "version": "1.0.0",
+  "description": "Enterprise-Grade Homelab Documentation - 28-Container GitOps Infrastructure",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0"
+  },
+  "keywords": [
+    "homelab",
+    "gitops",
+    "infrastructure",
+    "proxmox",
+    "terraform",
+    "ansible",
+    "monitoring",
+    "documentation"
+  ],
+  "author": "Piyush Mehta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piyush97/homelab-docs.git"
+  },
+  "homepage": "https://piyush97.github.io/homelab-docs/"
+}
