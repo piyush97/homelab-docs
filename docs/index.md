@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: "Enterprise Homelab"
-  text: "28-Container GitOps Infrastructure"
-  tagline: "Complete Infrastructure as Code with Advanced Monitoring & Observability"
+  name: "Homelab Infrastructure"
+  text: "Verified Proxmox Snapshot"
+  tagline: "23 live LXC containers; Terraform configuration documented separately"
   image:
     src: /hero-image.svg
     alt: Homelab Infrastructure
@@ -22,11 +22,11 @@ hero:
 features:
   - icon: 🏗️
     title: Infrastructure as Code
-    details: Complete GitOps implementation using Terraform for infrastructure provisioning and Ansible for configuration management. All 28 containers defined as code.
+    details: Terraform and Ansible configuration lives in the separate homelab-gitops repository; declarations may differ from live Proxmox state.
     
   - icon: 📊
-    title: Enterprise Monitoring
-    details: Advanced observability stack with Prometheus, Grafana, Loki, AlertManager, and Blackbox Exporter. 31-day log retention with intelligent alerting.
+    title: Monitoring
+    details: Monitoring services run in Proxmox CT 114; refer to its current configuration for deployed components and retention.
     
   - icon: 🔒
     title: Security First
@@ -40,62 +40,22 @@ features:
     title: GitOps Workflow
     details: Automated deployments via GitHub Actions. Infrastructure changes through pull requests with automated testing and rollback capabilities.
     
-  - icon: ⚡
-    title: High Performance
-    details: 99.9% uptime, optimized resource allocation (30.75GB RAM), and efficient storage management with automated backup and recovery.
 ---
 
-## 🏠 Welcome to Enterprise-Grade Homelab
+## Current live environment
 
-This documentation covers a sophisticated **28-container Proxmox homelab** that demonstrates enterprise-grade DevOps practices using Infrastructure as Code, comprehensive monitoring, and GitOps workflows.
+Proxmox currently reports **23 LXC containers: 16 running and 7 stopped**. This site documents the observed live environment; it is not a Terraform deployment guide. See the [infrastructure overview](/infrastructure/) and [container inventory](/infrastructure/containers). Verify runtime details in Proxmox and review GitOps drift before applying changes.
 
-### 📈 Key Metrics
+### Live inventory
 
-<div class="stats-grid">
-  <div class="stat-item">
-    <div class="stat-number">28</div>
-    <div class="stat-label">Containers</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">99.9%</div>
-    <div class="stat-label">Uptime</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">30.75GB</div>
-    <div class="stat-label">RAM Allocated</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">10TB</div>
-    <div class="stat-label">Storage</div>
-  </div>
-</div>
+- **16** containers running; **7** stopped
+- **23** containers listed in Proxmox
+- Proxmox node: `piyushmehta`; LAN subnet: `192.168.0.0/24`
+- See the [live inventory](/infrastructure/containers) for names, addresses, and states.
 
-### 🏗️ Architecture Overview
+### Architecture
 
-The infrastructure is built on **Proxmox VE 8.14** and organized into four main service categories:
-
-- **🎬 Media Stack** (9 containers): Plex, Sonarr, Radarr, qBittorrent, Prowlarr, Lidarr, Overseerr, FlareSolverr, AutoBrr
-- **📊 Advanced Monitoring** (9 containers): Grafana, Prometheus, Loki, AlertManager, Blackbox Exporter, Promtail, Uptime Kuma, PVE Exporter, Glance  
-- **🔒 Security & Network** (4 containers): SWAG, Wireguard, Vaultwarden, RustDesk
-- **🏢 Business & Storage** (6 containers): Odoo ERP, Paperless-ngx, Immich, File Server, Google Drive, ntfy
-
-### 🚀 What Makes This Special
-
-This homelab goes beyond typical home setups by implementing:
-
-- **Complete GitOps workflow** with Infrastructure as Code
-- **Enterprise-grade monitoring** with centralized logging and intelligent alerting
-- **Advanced automation** including self-healing and automated backups
-- **Professional documentation** and change management practices
-- **Scalable architecture** designed for growth and experimentation
-
-### 📱 Real-Time Notifications
-
-Stay informed with comprehensive notification system:
-- **🔴 Critical Alerts**: Container failures, storage issues
-- **🟡 Warnings**: Resource thresholds, service degradation
-- **ℹ️ Info**: Deployment status, system updates  
-- **✅ Success**: Backup completion, service recovery
+The environment uses one documented LAN bridge (`vmbr0`), Caddy for reverse proxying, Pi-hole for DNS, and WireGuard for a VPN tunnel. Current storage details and verified service links are on the [infrastructure overview](/infrastructure/). Older category counts, service mappings, uptime, and capacity claims have been removed where they could not be confirmed against current Proxmox state.
 
 ---
 

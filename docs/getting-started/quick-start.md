@@ -1,72 +1,34 @@
 # Quick Start
 
-Get your 28-container homelab up and running quickly with these streamlined deployment options.
+This is a guide to the separate `homelab-gitops` Terraform and Ansible repository. It does not describe or recreate the live Proxmox inventory. Current host VMIDs and services differ from the repository declarations; do not apply them to the live node without reviewing the code and Terraform plan.
 
-## 🚀 Choose Your Path
-
-### Option 1: Full Deployment (Recommended)
-Deploy the complete infrastructure in one go:
+## Inspect the GitOps repository
 
 ```bash
-# Clone the GitOps repository
 git clone https://github.com/piyush97/homelab-gitops.git
 cd homelab-gitops
-
-# Initialize Terraform
 terraform init
-
-# Review the deployment plan
+terraform validate
 terraform plan
-
-# Deploy infrastructure (15-20 minutes)
-terraform apply -auto-approve
-
-# Configure services
-cd ansible
-ansible-playbook -i inventory playbooks/site.yml
 ```
 
-### Option 2: Selective Deployment
-Choose specific service categories:
+A plan may create, modify, or destroy live resources. Do not run `terraform apply -auto-approve` against the existing homelab. Apply only after confirming the target, state, resource mapping, and every planned action. Never commit credentials.
 
-```bash
-# Media Stack Only
-terraform apply -target=module.media_stack
+## Current environment
 
-# Monitoring Stack Only  
-terraform apply -target=module.monitoring_stack
+The live host has 23 containers, with a mix of running and stopped services. Use the [live inventory](/infrastructure/containers) and verify current state in Proxmox. The inventory is observational; the GitOps repository describes configuration and may drift.
 
-# Security Services Only
-terraform apply -target=module.security_stack
+## Before deploying
 
-# Business Applications Only
-terraform apply -target=module.business_stack
-```
+1. Confirm you intend to provision a new environment, not reconcile the existing node.
+2. Review Terraform variables, provider settings, resource IDs, and state backend.
+3. Run `terraform plan` and review all changes.
+4. Back up critical data and configuration before approved changes.
+5. Validate the Ansible inventory and targets before running playbooks.
 
-### Option 3: Development Mode
-For testing and experimentation:
+## Existing deployment details
 
-```bash
-# Create development workspace
-terraform workspace new development
-
-# Deploy with minimal resources
-terraform apply -var="environment=dev"
-```
-
-## ⏱️ Deployment Timeline
-
-### Full Deployment (20-25 minutes)
-- **Infrastructure Provisioning**: 10-12 minutes (28 containers)
-- **Service Configuration**: 8-10 minutes (Ansible playbooks)
-- **Monitoring Setup**: 3-5 minutes (Grafana, Prometheus)
-- **Validation & Testing**: 2-3 minutes
-
-### Service-Specific Deployments
-- **Media Stack**: 6-8 minutes (9 containers)
-- **Monitoring Stack**: 5-7 minutes (9 containers)
-- **Security Services**: 3-4 minutes (4 containers)
-- **Business Apps**: 4-6 minutes (6 containers)
+The previous version included automatic apply instructions, fixed deployment timelines, and service groupings that are not verified for the current repository or live host. Consult the GitOps repository itself for supported modules and procedures; do not use old commands as deployment instructions.
 
 ## 🔧 Quick Configuration
 
